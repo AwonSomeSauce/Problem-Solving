@@ -1,5 +1,5 @@
 class Solution {
-private:
+   private:
     static bool compareByStartThenLength(const pair<int, int>& a, const pair<int, int>& b) {
         if (a.first == b.first) {
             return (a.second - a.first) > (b.second - b.first);
@@ -7,7 +7,7 @@ private:
         return a.first < b.first;
     }
 
-public:
+   public:
     int minTaps(int n, vector<int>& ranges) {
         vector<pair<int, int>> expandedRanges;
         for (int i = 0; i <= n; ++i) {
