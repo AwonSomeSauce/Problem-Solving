@@ -7,7 +7,7 @@ class Solution:
         def countUniqueDigits(pos: int, is_tight: bool, mask: int, is_leading_zero: bool) -> int:
             # Base case
             if pos == length:
-                return 1
+                return 1 if not is_leading_zero else 0
 
             # Determine the upper limit for the current digit
             upper_limit = digits[pos] if is_tight else 9
@@ -38,4 +38,4 @@ class Solution:
             return total_ways
 
         total_unique = countUniqueDigits(0, True, 0, True)
-        return n - total_unique + 1
+        return n - total_unique
