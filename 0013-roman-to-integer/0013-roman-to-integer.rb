@@ -1,7 +1,7 @@
 # @param {String} s
 # @return {Integer}
 def roman_to_int(s)
-    symbol_to_integers = {
+    symbol_to_value = {
         'I' => 1,
         'V' => 5,
         'X' => 10,
@@ -9,18 +9,28 @@ def roman_to_int(s)
         'C' => 100,
         'D' => 500,
         'M' => 1000
-    }
+    }.freeze
 
-    roman_integer = 0
-    chars = s.chars
+    value = 0
 
-    chars.each_with_index do |char, index|
-        if index < chars.length - 1 && symbol_to_integers[chars[index + 1]] > symbol_to_integers[char]
-            roman_integer -= symbol_to_integers[char]
-        else
-            roman_integer += symbol_to_integers[char]
+    s.chars.each_with_index do |char, index|
+        current_value = symbol_to_value[s[index]]
+
+        if index == s.length - 1
+            value += current_value
+            break
         end
+
+        next_value = symbol_to_value[s[index + 1]]
+
+        if current_value < next_value
+            value -= current_value
+        else
+            value += current_value
+        end
+
+        puts value
     end
 
-    roman_integer
+    value
 end
